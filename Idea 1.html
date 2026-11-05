@@ -95,6 +95,10 @@
       visibility: hidden;
     }
 
+    body.password-unlocked #entry-screen {
+      display: none !important;
+    }
+
     #entry-screen {
       position: fixed;
       inset: 0;
@@ -818,7 +822,7 @@
   </style>
 </head>
 
-<body class="password-locked">
+<body class="password-unlocked">
   <div class="scroll-progress" role="progressbar" aria-label="Page reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
     <span></span>
   </div>
