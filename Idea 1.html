@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My One and Only, The Lover of my Life ❤️</title>
+
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="./New_Project.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById("backgroundMusic");
+
+    async function startMusic() {
+      try {
+        await music.play();
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+        console.warn("Music could not start yet:", error);
+      }
+    }
+
+    document.addEventListener("password-accepted", startMusic, { once: true });
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(135deg, #2d1b69 0%, #6d28d9 48%, #a855f7 100%);
+      color: #312e81;
+      text-align: center;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
+    body.password-locked {
+      overflow: hidden;
+    }
+
+    body.password-unlocked {
+      background-color: #2d1b3d;
+      background-image: url("./birthday-background.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    body.password-unlocked::before,
+    body.password-unlocked::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    body.password-unlocked::before {
+      background-image:
+        radial-gradient(circle at 8% 18%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 21% 73%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 38% 30%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 52% 84%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 69% 16%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 84% 61%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px),
+        radial-gradient(circle at 94% 36%, #fff5c8 0 1px, #fff5c866 2px, transparent 5px);
+      animation: fairy-twinkle 3.6s ease-in-out infinite alternate;
+    }
+
+    body.password-unlocked::after {
+      background-image:
+        radial-gradient(circle at 15% 43%, #fff 0 1px, #fff8 2px, transparent 6px),
+        radial-gradient(circle at 47% 12%, #fff 0 1px, #fff8 2px, transparent 6px),
+        radial-gradient(circle at 62% 66%, #fff 0 1px, #fff8 2px, transparent 6px),
+        radial-gradient(circle at 77% 89%, #fff 0 1px, #fff8 2px, transparent 6px);
+      animation: fairy-twinkle 4.8s ease-in-out 0.7s infinite alternate;
+    }
+
+    @keyframes fairy-twinkle {
+      from { opacity: 0.35; }
+      to { opacity: 0.9; }
+    }
+
+    body.password-locked > :not(#entry-screen) {
+      visibility: hidden;
+    }
+
+    #entry-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 24px;
+      overflow-y: auto;
+      background: linear-gradient(145deg, #2e1065, #6d28d9 52%, #c084fc);
+      color: #fff;
+    }
+
+    .entry-tabs {
+      display: flex;
+      gap: 10px;
+    }
+
+    .entry-tab {
+      min-width: 130px;
+      border: 1px solid #ffffff66;
+      background: #2e106566;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .entry-tab[aria-selected="true"] {
+      background: #9d174d;
+    }
+
+    .entry-tab:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .entry-panel {
+      width: 100%;
+      padding: 0;
+    }
+
+    #countdown-panel[hidden],
+    #password-panel[hidden] {
+      display: none;
+    }
+
+    #countdown-panel {
+      display: flex;
+      justify-content: center;
+    }
+
+    #countdown-panel .midnight-countdown {
+      width: min(100%, 360px);
+      margin: 0;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 8;
+      width: 100%;
+      height: 4px;
+      background: #ffffff55;
+      pointer-events: none;
+    }
+
+    .scroll-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: #f9a8d4;
+      box-shadow: 0 0 10px #f9a8d4;
+      transition: width 0.15s linear;
+    }
+
+    #music-toggle {
+      position: fixed;
+      z-index: 7;
+      top: 16px;
+      right: 16px;
+      padding: 11px 16px;
+      border: 1px solid #ffffff66;
+      background: #2e1065e8;
+      box-shadow: 0 5px 18px #1e103855;
+      color: white;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    #music-toggle[aria-pressed="true"] {
+      background: #9d174d;
+    }
+
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .section-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #password-gate {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    #password-gate h1 {
+      font-size: clamp(32px, 7vw, 52px);
+      margin: 0;
+    }
+
+    #password-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #password-input {
+      min-width: 220px;
+      padding: 14px 18px;
+      border: 1px solid #d9a3b5;
+      border-radius: 30px;
+      font: inherit;
+      text-align: center;
+    }
+
+    #password-error {
+      min-height: 1.5em;
+      color: #ffd9e8;
+      font-family: Arial, sans-serif;
+    }
+
+    #birthday-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      overflow-y: auto;
+      padding: 32px 20px;
+      background: linear-gradient(145deg, #2e1065, #6d28d9 52%, #c084fc);
+      color: #fff;
+    }
+
+    #birthday-intro[hidden] {
+      display: none;
+    }
+
+    #birthday-intro .intro-kicker {
+      margin: 0;
+      font: 12px Arial, sans-serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    #birthday-intro h1 {
+      margin: 0;
+      font-size: clamp(36px, 8vw, 64px);
+    }
+
+    #birthday-intro .intro-message {
+      max-width: 440px;
+      margin: 0 0 12px;
+      font: 17px/1.7 Arial, sans-serif;
+    }
+
+    #birthday-intro #cake {
+      flex: 0 0 190px;
+      margin: 12px auto;
+    }
+
+    .hero {
+      min-height: 92vh;
+      padding: 70px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg, #2e1065, #6d28d9 52%, #c084fc);
+      color: #fff;
+      position: relative;
+    }
+
+    .password-unlocked .hero {
+      background: linear-gradient(145deg, #2e1065cc, #6d28d9aa 52%, #c084fc88);
+    }
+
+    .small-title {
+      font-family: "Times New Roman", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
+    .birthday-date {
+      font-family: "Times New Roman", sans-serif;
+      font-size: 15px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .midnight-countdown {
+      margin: 0 0 24px;
+      padding: 14px 24px;
+      border: 1px solid #ffffff66;
+      border-radius: 16px;
+      background: #2e106566;
+      box-shadow: 0 8px 25px #1e103833;
+    }
+
+    .midnight-countdown-label {
+      margin: 0 0 6px;
+      font: 11px Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    #midnight-countdown-value {
+      margin: 0;
+      font: 700 clamp(28px, 7vw, 40px)/1.2 Arial, sans-serif;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 3px;
+    }
+
+    #midnight-message {
+      margin: 8px 0 0;
+      font: 14px Arial, sans-serif;
+    }
+
+    .midnight-confetti {
+      position: fixed;
+      top: -24px;
+      z-index: 11;
+      width: 10px;
+      height: 18px;
+      pointer-events: none;
+      animation: midnight-confetti-fall 4s linear forwards;
+    }
+
+    @keyframes midnight-confetti-fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    #cake {
+      position: relative;
+      display: block;
+      width: min(220px, 70vw);
+      height: 190px;
+      margin: 10px auto 24px;
+    }
+
+    .cake-stand {
+      position: absolute;
+      right: 10%;
+      bottom: 0;
+      left: 10%;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(#fbcfe8, #db2777);
+      box-shadow: 0 5px 0 #9d174d;
+    }
+
+    .cake-tier {
+      position: absolute;
+      left: 50%;
+      border: 2px solid #fff;
+      border-radius: 10px 10px 6px 6px;
+      transform: translateX(-50%);
+      background: repeating-linear-gradient(90deg, #f9a8d4 0 22px, #f472b6 22px 44px);
+      box-shadow: inset 0 -7px 0 #db277755;
+    }
+
+    .cake-tier::before {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+      left: -2px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff1f2;
+      content: "";
+    }
+
+    .cake-tier-bottom {
+      bottom: 16px;
+      width: 82%;
+      height: 45px;
+    }
+
+    .cake-tier-middle {
+      bottom: 57px;
+      width: 66%;
+      height: 42px;
+    }
+
+    .cake-tier-top {
+      bottom: 95px;
+      width: 50%;
+      height: 38px;
+    }
+
+    .cake-candle {
+      position: absolute;
+      z-index: 1;
+      bottom: 130px;
+      left: 50%;
+      width: 13px;
+      height: 38px;
+      border-radius: 4px;
+      transform: translateX(-50%);
+      background: repeating-linear-gradient(135deg, #fef3c7 0 6px, #f472b6 6px 10px);
+    }
+
+    .cake-flame {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      width: 10px;
+      height: 18px;
+      margin-left: -5px;
+      border-radius: 100% 100% 60% 60%;
+      background: #fbbf24;
+      box-shadow: 0 0 14px 5px #fb923c99;
+      animation: candle-flicker 0.8s ease-in-out infinite alternate;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    @keyframes candle-flicker {
+      from { opacity: 0.75; transform: translateX(-1px) scale(0.9); }
+      to { opacity: 1; transform: translateX(1px) scale(1.08); }
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .pink {
+      color: #e9d5ff;
+      font-style: italic;
+    }
+
+    .hero p {
+      font-family: "Times New Roman", sans-serif;
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 15px 25px;
+      background: #7c3aed;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      background: #5b21b6;
+    }
+
+    .heart {
+      font-size: 45px;
+      margin-bottom: 20px;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .heart-trigger {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      line-height: 1;
+    }
+
+    .heart-trigger:hover {
+      background: transparent;
+      transform: scale(1.12);
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(2); }
+    }
+
+    section {
+      padding: 75px 20px;
+    }
+
+    h2 {
+      font-size: clamp(29px, 5vw, 42px);
+      margin-bottom: 18px;
+    }
+
+    .subtitle {
+      font-family: Arial, sans-serif;
+      line-height: 1.8;
+      margin: 0 auto 35px;
+      max-width: 550px;
+    }
+
+    .memories {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .memory {
+      background: white;
+      border-radius: 15px;
+      padding: 12px 12px 22px;
+      box-shadow: 0 6px 20px #ad668018;
+      transform: rotate(-1deg);
+    }
+
+    .memory:nth-child(2) {
+      transform: rotate(2deg);
+    }
+
+    .memory:nth-child(3) {
+      transform: rotate(-2deg);
+    }
+
+    .photo {
+      height: 190px;
+      border-radius: 9px;
+      background: #f8dbe5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 48px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .memory p {
+      font-size: 16px;
+    }
+
+    .video-section {
+      background: linear-gradient(135deg, #ede9fe, #ddd6fe 55%, #c4b5fd);
+    }
+
+    .password-unlocked .video-section {
+      background: rgba(237, 233, 254, 0.72);
+    }
+
+    .video-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .video-number-picker {
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+
+    .video-number-picker label,
+    .video-number-picker select,
+    .video-number-picker button {
+      margin: 6px;
+    }
+
+    #video-number-result {
+      margin-top: 12px;
+      color: #6d28d9;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .video-frame {
+      width: min(100%, 800px);
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #4c1d95;
+      box-shadow: 0 8px 25px #4c1d9533;
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1e1b4b;
+    }
+
+    .video-placeholder {
+      min-height: 220px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .video-placeholder strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+    }
+
+    .video-caption {
+      margin: 22px 0 0;
+      font-style: italic;
+    }
+
+    .letter-section {
+      background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+    }
+
+    .password-unlocked .letter-section {
+      background: rgba(221, 214, 254, 0.72);
+    }
+
+    #letter {
+      display: none;
+      max-width: 600px;
+      margin: 30px auto 0;
+      background-color: #321b35;
+      background:
+        linear-gradient(rgba(35, 15, 39, 0.42), rgba(35, 15, 39, 0.42)),
+        url("./letter-background.png") center / cover no-repeat;
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      line-height: 1.9;
+      white-space: pre-line;
+      color: #fff;
+      box-shadow: 0 8px 25px #a54c6818;
+    }
+
+    #letter h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #fff;
+    }
+
+    .surprise {
+      padding: 75px 20px;
+      background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+    }
+
+    .password-unlocked .surprise {
+      background: rgba(245, 243, 255, 0.72);
+    }
+
+    .guessing-game {
+      width: min(100%, 430px);
+      margin: 30px auto;
+      padding: 24px;
+      border: 1px solid #ffffffb3;
+      border-radius: 20px;
+      background: #fffaf7e8;
+      box-shadow: 0 8px 25px #4c1d9522;
+    }
+
+    .guessing-game h3 {
+      margin-bottom: 10px;
+      color: #4c1d95;
+      font-size: 24px;
+    }
+
+    .guessing-game p {
+      margin-bottom: 16px;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    #guess-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    #guess-input {
+      width: 110px;
+      padding: 12px;
+      border: 1px solid #c4b5fd;
+      border-radius: 30px;
+      font: inherit;
+      text-align: center;
+    }
+
+    #guess-feedback {
+      min-height: 3em;
+      margin: 16px 0 0;
+      color: #5b21b6;
+      font-weight: bold;
+    }
+
+    #guess-reset {
+      display: none;
+      margin-top: 8px;
+      background: #9d174d;
+    }
+
+    #surprise-message {
+      display: none;
+      margin: 25px auto 0;
+      font-size: 23px;
+      max-width: 500px;
+      line-height: 1.8;
+      color: #6d28d9;
+    }
+
+    footer {
+      padding: 30px 20px;
+      background: linear-gradient(90deg, #2e1065, #4c1d95);
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .password-unlocked footer {
+      background: rgba(46, 16, 101, 0.9);
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      z-index: 5;
+      pointer-events: none;
+      animation: float-up 4s linear forwards;
+    }
+
+    @keyframes float-up {
+      to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #music-toggle {
+        top: 12px;
+        right: 12px;
+        padding: 10px 13px;
+      }
+
+      .memories {
+        grid-template-columns: 1fr;
+        max-width: 330px;
+      }
+
+      .photo {
+        height: 240px;
+      }
+
+      .memory,
+      .memory:nth-child(2),
+      .memory:nth-child(3) {
+        transform: none;
+      }
+
+      #letter {
+        padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      body.password-unlocked::before,
+      body.password-unlocked::after {
+        animation: none;
+        opacity: 0.65;
+      }
+
+      .section-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="password-locked">
+  <div class="scroll-progress" role="progressbar" aria-label="Page reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <span></span>
+  </div>
+
+  <button id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">♫ Play music</button>
+
+  <div id="entry-screen">
+    <div class="entry-tabs" role="tablist" aria-label="Birthday access">
+      <button id="countdown-tab" class="entry-tab" type="button" role="tab" aria-selected="true" aria-controls="countdown-panel">Countdown</button>
+      <button id="password-tab" class="entry-tab" type="button" role="tab" aria-selected="false" aria-controls="password-panel" disabled>Password</button>
+    </div>
+
+    <section id="countdown-panel" class="entry-panel" role="tabpanel" aria-labelledby="countdown-tab">
+      <div class="midnight-countdown" aria-label="Countdown to midnight">
+        <p class="midnight-countdown-label">Countdown to midnight</p>
+        <p id="midnight-countdown-value">00:00:00</p>
+        <p id="midnight-message" role="status" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <section id="password-panel" class="entry-panel" role="tabpanel" aria-labelledby="password-tab" hidden>
+      <div id="password-gate">
+        <div class="heart" aria-hidden="true">❤️</div>
+        <h1>Hulaan mo kung ano laman nito nyenyenye lob u</h1>
+        <p>Buksan mo para malaman mo ung birthday surprise mo baby;></p>
+        <form id="password-form">
+          <label for="password-input">Password code</label>
+          <input
+            id="password-input"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            required
+            aria-describedby="password-error">
+          <button type="submit">Unlock 💌</button>
+        </form>
+        <p id="password-error" role="alert" aria-live="polite"></p>
+      </div>
+    </section>
+  </div>
+
+  <section id="birthday-intro" aria-labelledby="birthday-intro-title" aria-modal="true" role="dialog" hidden>
+    <p class="intro-kicker">A little birthday surprise</p>
+    <div id="cake" role="img" aria-label="A pink birthday cake with a lit candle">
+      <div class="cake-candle" aria-hidden="true">
+        <span class="cake-flame"></span>
+      </div>
+      <div class="cake-tier cake-tier-top" aria-hidden="true"></div>
+      <div class="cake-tier cake-tier-middle" aria-hidden="true"></div>
+      <div class="cake-tier cake-tier-bottom" aria-hidden="true"></div>
+      <div class="cake-stand" aria-hidden="true"></div>
+    </div>
+    <h1 id="birthday-intro-title">Happy Birthday, My Love! 🎂</h1>
+    <p class="intro-message">I made this special day just for you. Sana ma enjoy mo araw mo ngayon mahal<3.</p>
+    <button id="birthday-intro-continue" type="button">Open your birthday surprise 💌</button>
+  </section>
+
+  <header class="hero section-reveal" id="top">
+    <button class="heart heart-trigger" type="button" aria-label="Send a burst of hearts">❤️</button>
+    <div class="small-title">A little something for you</div>
+    <p class="birthday-date">
+      <time datetime="2026-11-05">November 5, 2026</time>
+    </p>
+
+    <h1>Happy Birthday,<br>
+      <span class="pink" id="girlfriend-name">My Love</span>
+    </h1>
+
+    <p>
+      Today is all about you. I made this little corner
+      of the internet to remind you how special you are to me.
+    </p>
+
+    <button type="button" onclick="showSurprise()">
+      Open your surprise 💌
+    </button>
+  </header>
+
+  <section class="video-section section-reveal" id="video-presentation">
+    <p class="video-label">A SPECIAL GIFT FOR YOU</p>
+
+    <h2>A short video showing people care for you</h2>
+
+    <p class="subtitle">
+      The people who always stayed by your side no matter what, with all the love ones that care, support and love you.
+    </p>
+
+    <div class="video-number-picker">
+      <label for="video-number">Choose a video greeting:</label>
+      <select id="video-number" required>
+        <option value="" selected disabled>Choose a number</option>
+      </select>
+      <p id="video-number-result" aria-live="polite" hidden></p>
+    </div>
+
+    <div class="video-frame">
+      <div id="videoPlaceholder" class="video-placeholder">
+        <strong>"A Little Video from your loved ones<3"</strong>
+      </div>
+      <video id="birthdayVideo" hidden controls playsinline preload="metadata" poster="birthday-background.png">
+        <source type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+  </section>
+
+  <section class="letter-section section-reveal" id="love-letter">
+    <h2>A Letter Just for You 💌</h2>
+    <p class="subtitle">There are things I want you to know, today and always.</p>
+
+    <button id="letter-toggle" type="button" aria-expanded="false" aria-controls="letter" onclick="toggleLetter()">
+      Read my letter
+    </button>
+
+    <div id="letter">
+      <h3>To My Favorite Person ❤️</h3>
+      Happy birthday, my love!
+
+      I hope you know how grateful I am to have you
+      in my life. You make ordinary days feel special,
+      and your smile is one of my favorite things
+      in this world.
+
+      I may not always find the perfect words to say
+      how much you mean to me, but I will always try
+      to show you through my actions.
+
+      Today, I wish you happiness, good health,
+      peaceful days, and all the beautiful things
+      your heart deserves.
+
+      Thank you for being you. I hope I can keep
+      making memories with you, celebrating your
+      little victories, and supporting you through
+      every season of life.
+
+      Happy birthday, My Love.
+      Always and will Forever cheer for you,
+      Your one and only, Jubel❤️
+    </div>
+  </section>
+
+  <section class="music-section section-reveal" id="our-songs">
+    <div class="music-heart">♫ ♥ ♫</div>
+
+    <p class="music-label">THE MELODY OF US</p>
+
+    <h2>The song that always remind me of You and only you</h2>
+
+    <p class="music-description">
+      Some songs are just songs, but these remind me of you.
+      Every melody holds a feeling, every lyric brings back
+      a memory, and somehow, they all lead me back to you.
+      These songs always hold a special memory in our story that became
+      our way to express our LOVE. I love you so much ❤️
+    </p>
+
+    <div class="spotify-player">
+      <iframe
+        src="https://open.spotify.com/embed/playlist/2jbmVSQFWg8sUxwN5rhGfc?utm_source=generator"
+        width="100%"
+        height="380"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <p class="music-footer">
+      Every love song sounds a little more like you. 💗
+    </p>
+
+    <a
+      class="spotify-link"
+      href="https://open.spotify.com/playlist/2jbmVSQFWg8sUxwN5rhGfc"
+      target="_blank"
+      rel="noopener noreferrer">
+      Open playlist on Spotify ↗
+    </a>
+  </section>
+
+  <section class="surprise section-reveal" id="final-surprise">
+    <h2>One Last Little Surprise 🎁</h2>
+    <p class="subtitle">
+      Because one birthday greeting is never enough.
+    </p>
+
+    <div class="guessing-game">
+      <h3>A Little Guessing Game 💜</h3>
+      <p>I'm thinking of a number from 1 to 20. Can you guess it in 4 tries?</p>
+
+      <form id="guess-form">
+        <label for="guess-input">Your guess</label>
+        <input id="guess-input" type="number" min="1" max="20" inputmode="numeric" required>
+        <button type="submit">Guess ✨</button>
+      </form>
+
+      <p id="guess-feedback" role="status" aria-live="polite">You have 4 guesses. Good luck, my love!</p>
+
+      <div id="guessing-game-video" hidden>
+        <video id="guessingGameVideo" controls playsinline preload="metadata">
+          <source src="./Video%20greetings/1.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+
+      <button id="guess-reset" type="button">Play again 💝</button>
+    </div>
+
+    <button id="final-surprise-toggle" type="button" aria-expanded="false" aria-controls="surprise-message" onclick="revealFinalMessage()">
+      Click me one more time 💝
+    </button>
+
+    <div id="surprise-message">
+      Always remember that you are my everything, you matter in everything.
+      <br><br>
+      Always remember that I will always try to understand you and help you through thick and thin ❤️
+      <br><br>
+      Happy 19th Birthday again My love, Xiomara! 🎂
+    </div>
+  </section>
+
+  <footer>
+    Made with love, just for you ❤️
+    <br>
+    Every scene deserves to be seen, but my favorite
+    view will always be you.
+  </footer>
+
+  <script>
+    const passwordForm = document.getElementById("password-form");
+    const passwordInput = document.getElementById("password-input");
+    const passwordError = document.getElementById("password-error");
+    const entryScreen = document.getElementById("entry-screen");
+    const countdownTab = document.getElementById("countdown-tab");
+    const passwordTab = document.getElementById("password-tab");
+    const countdownPanel = document.getElementById("countdown-panel");
+    const passwordPanel = document.getElementById("password-panel");
+    const midnightCountdownValue = document.getElementById("midnight-countdown-value");
+    const midnightMessage = document.getElementById("midnight-message");
+    const birthdayIntro = document.getElementById("birthday-intro");
+    const birthdayIntroContinue = document.getElementById("birthday-intro-continue");
+    const musicToggle = document.getElementById("music-toggle");
+    const progressBar = document.querySelector(".scroll-progress");
+    const guessForm = document.getElementById("guess-form");
+    const guessInput = document.getElementById("guess-input");
+    const guessFeedback = document.getElementById("guess-feedback");
+    const guessReset = document.getElementById("guess-reset");
+    const guessingGameVideoContainer = document.getElementById("guessing-game-video");
+    const guessingGameVideo = document.getElementById("guessingGameVideo");
+    const videoNumberInput = document.getElementById("video-number");
+    const videoNumberResult = document.getElementById("video-number-result");
+    const availableVideoNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+    const videoGreetingExtensions = { "12": "MOV" };
+    const secretNumber = 17;
+    let guessesRemaining = 4;
+
+    const birthdayDate = document.querySelector(".birthday-date time").dateTime;
+    const midnightTarget = new Date(birthdayDate + "T00:00:00");
+    let midnightTimer;
+    let midnightReached = false;
+
+    function selectEntryTab(tab) {
+      const showPassword = tab === passwordTab;
+      passwordTab.setAttribute("aria-selected", String(showPassword));
+      countdownTab.setAttribute("aria-selected", String(!showPassword));
+      passwordPanel.hidden = !showPassword;
+      countdownPanel.hidden = showPassword;
+    }
+
+    countdownTab.addEventListener("click", () => selectEntryTab(countdownTab));
+    passwordTab.addEventListener("click", () => {
+      if (!passwordTab.disabled) {
+        selectEntryTab(passwordTab);
+        passwordInput.focus();
+      }
+    });
+
+    function createConfetti() {
+      const colors = ["#f472b6", "#fbbf24", "#a78bfa", "#34d399", "#60a5fa", "#fb7185"];
+
+      for (let i = 0; i < 120; i++) {
+        const piece = document.createElement("span");
+        piece.className = "midnight-confetti";
+        piece.setAttribute("aria-hidden", "true");
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 1.5 + "s";
+        piece.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+        document.body.appendChild(piece);
+        window.setTimeout(() => piece.remove(), 6000);
+      }
+    }
+
+    function updateMidnightCountdown() {
+      const millisecondsLeft = midnightTarget.getTime() - Date.now();
+
+      if (millisecondsLeft <= 0) {
+        midnightReached = true;
+        midnightCountdownValue.textContent = "00:00:00";
+        midnightMessage.textContent = "It's midnight! Happy Birthday! 🎉";
+        midnightMessage.hidden = false;
+        passwordTab.disabled = false;
+        selectEntryTab(passwordTab);
+        createConfetti();
+        window.clearInterval(midnightTimer);
+        return;
+      }
+
+      const totalSeconds = Math.ceil(millisecondsLeft / 1000);
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      midnightCountdownValue.textContent = [hours, minutes, seconds]
+        .map((value) => String(value).padStart(2, "0"))
+        .join(":");
+    }
+
+    updateMidnightCountdown();
+    midnightTimer = window.setInterval(updateMidnightCountdown, 1000);
+
+    availableVideoNumbers.forEach((number) => {
+      const option = document.createElement("option");
+      option.value = number;
+      option.textContent = number;
+      videoNumberInput.appendChild(option);
+    });
+
+    function updateMusicToggle() {
+      const isPlaying = !music.paused;
+      musicToggle.textContent = isPlaying ? "♫ Pause music" : "♫ Play music";
+      musicToggle.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+      musicToggle.setAttribute("aria-pressed", String(isPlaying));
+    }
+
+    music.addEventListener("play", updateMusicToggle);
+    music.addEventListener("pause", updateMusicToggle);
+
+    musicToggle.addEventListener("click", async () => {
+      if (music.paused) {
+        try {
+          await music.play();
+        } catch (error) {
+          if (error instanceof DOMException && error.name === "AbortError") {
+            return;
+          }
+          console.warn("Music could not start yet:", error);
+        }
+      } else {
+        music.pause();
+      }
+    });
+
+    function updateScrollProgress() {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollableHeight > 0
+        ? Math.round((window.scrollY / scrollableHeight) * 100)
+        : 0;
+
+      progressBar.setAttribute("aria-valuenow", String(progress));
+      progressBar.firstElementChild.style.width = progress + "%";
+    }
+
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("resize", updateScrollProgress);
+    updateScrollProgress();
+
+    const revealTargets = document.querySelectorAll(".section-reveal");
+
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          entry.target.classList.add("is-visible");
+        });
+      }, { threshold: 0.12 });
+
+      revealTargets.forEach((target) => sectionObserver.observe(target));
+    } else {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+
+    passwordForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!midnightReached) {
+        return;
+      }
+
+      if (passwordInput.value !== "110507") {
+        passwordError.textContent = "That code is incorrect. Please try again.";
+        passwordInput.select();
+        return;
+      }
+
+      document.body.classList.remove("password-locked");
+      document.body.classList.add("password-unlocked");
+      entryScreen.remove();
+      birthdayIntro.hidden = false;
+      birthdayIntroContinue.focus();
+      document.dispatchEvent(new Event("password-accepted"));
+    });
+
+    birthdayIntroContinue.addEventListener("click", () => {
+      birthdayIntro.hidden = true;
+      document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+      document.querySelector("#top button").focus({ preventScroll: true });
+    });
+
+    const girlfriendName = "My Love";
+    const girlfriendNameElement = document.getElementById("girlfriend-name");
+
+    if (girlfriendNameElement) {
+      girlfriendNameElement.textContent = girlfriendName;
+    }
+
+    function showSurprise() {
+      document.getElementById("video-presentation").scrollIntoView({
+        behavior: "smooth"
+      });
+      createHearts(15);
+    }
+
+    const birthdayVideo = document.getElementById("birthdayVideo");
+    const videoPlaceholder = document.getElementById("videoPlaceholder");
+
+    function loadBirthdayVideo(selectedNumber) {
+      const source = birthdayVideo.querySelector("source");
+      const extension = videoGreetingExtensions[selectedNumber] || "mp4";
+      birthdayVideo.pause();
+      birthdayVideo.hidden = true;
+      videoPlaceholder.hidden = false;
+      videoPlaceholder.querySelector("strong").textContent = "\"A Little Video from your loved ones<3\"";
+      source.src = "./Video%20greetings/" + selectedNumber + "." + extension;
+      if (extension === "MOV") {
+        source.removeAttribute("type");
+      } else {
+        source.type = "video/mp4";
+      }
+      birthdayVideo.load();
+      videoNumberResult.textContent = "Loading video greeting #" + selectedNumber + "...";
+      videoNumberResult.hidden = false;
+    }
+
+    birthdayVideo.addEventListener("loadedmetadata", () => {
+      birthdayVideo.hidden = false;
+      videoPlaceholder.hidden = true;
+      videoNumberResult.textContent = "Video greeting #" + videoNumberInput.value + " is ready!";
+    });
+
+    birthdayVideo.addEventListener("error", () => {
+      birthdayVideo.hidden = true;
+      videoPlaceholder.hidden = false;
+      videoPlaceholder.querySelector("strong").textContent = "This video could not be played. Please check the video file.";
+      videoNumberResult.textContent = "Video greeting #" + videoNumberInput.value + " could not be loaded.";
+      videoNumberResult.hidden = false;
+    });
+
+    guessingGameVideo.addEventListener("error", () => {
+      guessingGameVideoContainer.hidden = true;
+      guessFeedback.textContent = "The bonus video could not be played. Please check the video file.";
+    });
+
+    videoNumberInput.addEventListener("change", () => {
+      const selectedNumber = videoNumberInput.value;
+      if (!selectedNumber) {
+        return;
+      }
+      loadBirthdayVideo(selectedNumber);
+    });
+
+    function playGuessingGameVideo() {
+      guessingGameVideoContainer.hidden = false;
+      guessingGameVideo.play().catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+        console.warn("Guessing game video could not start:", error);
+      });
+    }
+
+    function toggleLetter(forceOpen = false) {
+      const letter = document.getElementById("letter");
+      const button = document.getElementById("letter-toggle");
+      const isOpen = forceOpen || letter.style.display !== "block";
+
+      letter.style.display = isOpen ? "block" : "none";
+      button.setAttribute("aria-expanded", String(isOpen));
+      button.textContent = isOpen ? "Close my letter" : "Read my letter";
+
+      if (isOpen) {
+        createHearts(10);
+      }
+    }
+
+    function revealFinalMessage() {
+      const message = document.getElementById("surprise-message");
+      const button = document.getElementById("final-surprise-toggle");
+      const isOpen = message.style.display !== "block";
+
+      message.style.display = isOpen ? "block" : "none";
+      button.setAttribute("aria-expanded", String(isOpen));
+      button.textContent = isOpen ? "Hide your message 💝" : "Click me one more time 💝";
+
+      if (isOpen) {
+        createHearts(25);
+      }
+    }
+
+    document.querySelector(".heart-trigger").addEventListener("click", () => createHearts(15));
+
+    guessForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const guess = Number(guessInput.value);
+      if (!Number.isInteger(guess) || guess < 1 || guess > 20) {
+        guessFeedback.textContent = "Choose a whole number from 1 to 20.";
+        return;
+      }
+
+      guessesRemaining--;
+
+      if (guess === secretNumber) {
+        guessFeedback.textContent = "You got it! The answer was " + secretNumber + ". Hulaan mo bakit yun, Yieeee 💖";
+        finishGuessingGame();
+        createHearts(15);
+        playGuessingGameVideo();
+      } else if (guessesRemaining === 0) {
+        guessFeedback.textContent = "The number was " + secretNumber + " Wag nalang wag nlng 💕";
+        finishGuessingGame();
+      } else {
+        const hint = guess < secretNumber ? "Try a little higher!" : "Try a little lower!";
+        guessFeedback.textContent = hint + " " + guessesRemaining + (guessesRemaining === 1 ? " guess" : " guesses") + " left.";
+        guessInput.select();
+      }
+    });
+
+    function finishGuessingGame() {
+      guessInput.disabled = true;
+      guessForm.querySelector("button").disabled = true;
+      guessReset.style.display = "inline-block";
+    }
+
+    guessReset.addEventListener("click", () => {
+      guessesRemaining = 4;
+      guessInput.value = "";
+      guessInput.disabled = false;
+      guessForm.querySelector("button").disabled = false;
+      guessingGameVideo.pause();
+      guessingGameVideo.currentTime = 0;
+      guessingGameVideoContainer.hidden = true;
+      guessReset.style.display = "none";
+      guessFeedback.textContent = "You have 4 guesses. Good luck, my love!";
+      guessInput.focus();
+    });
+
+    function createHearts(amount) {
+      for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.textContent = ["❤️", "💗", "💕", "💖"][Math.floor(Math.random() * 4)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 22) + "px";
+        heart.style.animationDelay = (Math.random() * 1.5) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+  </script>
+</body>
+</html>
+
